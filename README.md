@@ -3,7 +3,7 @@
 This is a simple Vault coded for learning purposes.
 
 It implement a single-asset DAI vault that earns profit through depositing the funds into the Curve 3pool.
-The vault is also an ERC20 token itself (for accounting purposes, to keep track of the funds of individual depositors). We call this type of ERC20 token an LP token.
+The vault is also an ERC20 token itself (for accounting purposes, to keep track of the funds of individual depositors). This type of ERC20 token shall be called LP token.
 The vault implements the following functions:
 
 - `deposit(uint256 underlyingAmount)` - allows a user to deposit `underlyingAmount` DAI and receive LP tokens in return
