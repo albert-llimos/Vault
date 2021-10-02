@@ -12,6 +12,8 @@ The vault implements the following functions:
 - `withdraw(uint256 lpAmount)` - allows a user to withdraw `lpAmount` LP tokens and receive underlying tokens in return
 - `harvest()` - claims the accumulated CRV rewards from Curve and converts them to DAI
 - `exchangeRate()` - returns the exchange rate between the underlying token (DAI) and the LP token
+- rebalance() - To be done
+
 
 In order to compile, migrate/deploy or test, follow the standard procedure:
 
