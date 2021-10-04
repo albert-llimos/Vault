@@ -8,6 +8,15 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol";
 import "@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol";
 
+/**
+   * ALERT: Known Security Hazard! (this is only for learning purposes)
+   * In the entire contract we are relying on Uniswap and CurveFi. 
+   * We should add bounds to this code to make this operations execute 
+   * only if the values are within the bounds.
+   * This kind of check would prevent attacks such as flashloan attacks,
+   * which can create imbalances in the Uniswap/CurveFi pool that
+   * ccould be used to exploit this contract.
+*/
 
 interface ICurve3Pool {
     function add_liquidity( uint256[3] memory amounts ,  uint256 in_mint_amount ) external;
@@ -75,6 +84,7 @@ contract Vault is ERC20,ReentrancyGuard {
      * @param _uniRouter Address of UniRouter contract. MainNet: 0xE592427A0AEce92De3Edee1F18E0157C05861564
      * @param _curveFi_LPGauge Address of curveFi LPGauge contract. MainNet: 0xFD4D8a17df4C27c1dD245d153ccf4499e806C87D
    */
+   
     constructor(
         address _tokenDai,
         address _CRVaddress,
@@ -235,12 +245,6 @@ contract Vault is ERC20,ReentrancyGuard {
 
         tokenDai.transfer(msg.sender, _amountToWithdraw);
 
-        /**
-         * Potential Security Hazard
-         * We are trusting that the values from Uniswap and CurveFi are
-         * fine. Some check should be added to prevent flashloan attacks
-         * or other types of attack.
-        */
     }
 
 
@@ -350,4 +354,6 @@ contract Vault is ERC20,ReentrancyGuard {
      * Rebalance or redistribute function to be able to use the harvested
      * coins.
     */
+    
+
 }
